@@ -69,6 +69,10 @@ const filters = {
   },
 }
 
+const imageCanvas = document.querySelector("#image-canvas")
+const imageInput = document.querySelector("#image-input")
+const canvasContext = imageCanvas.getContext("2d")
+
 const filtersContainer = document.querySelector(".filters")
 
 function createFilterElement(name, unit = "%", value, min, max){
@@ -98,4 +102,17 @@ const filterElement = createFilterElement(key, filters[ key ].unit, filters[ key
 
 filtersContainer.appendChild(filterElement)
 
+})
+
+imageInput.addEventListener("change", (event) => {
+
+console.log("File input changed", event.target.files)
+  const file = event.target. files[ 0 ]
+
+const img = new Image()
+img.src = URL.createObjectURL(file)
+
+img. onload = () => {
+canvasCtx.drawImage(img, 0, 0)
+}
 })
