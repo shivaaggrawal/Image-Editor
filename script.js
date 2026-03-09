@@ -70,6 +70,7 @@ const canvasCtx = imageCanvas.getContext("2d")
 const filtersContainer = document.querySelector(".filters")
 const resetButton = document.querySelector("#reset-btn")
 const downloadButton = document.querySelector("#download-btn")
+const presetsContainer = document.querySelector(".presets")
 let file = null
 let img = null
 
@@ -224,4 +225,196 @@ downloadButton.addEventListener("click", () => {
   link.download = "edited-image.png"
   link.href = imageCanvas.toDataURL()
   link.click()
+})
+
+const presets = {
+  Normal: {
+    Brightness: 100,
+    Contrast: 100,
+    Saturation: 100,
+    HueRotation: 0,
+    Blur: 0,
+    Grayscale: 0,
+    Sepia: 0,
+    Opacity: 100,
+    Invert: 0
+  },
+
+  Drama: {
+    Brightness: 90,
+    Contrast: 150,
+    Saturation: 120,
+    HueRotation: 0,
+    Blur: 0,
+    Grayscale: 0,
+    Sepia: 0,
+    Opacity: 100,
+    Invert: 0
+  },
+
+  Vintage: {
+    Brightness: 110,
+    Contrast: 80,
+    Saturation: 80,
+    HueRotation: 0,
+    Blur: 0,
+    Grayscale: 0,
+    Sepia: 40,
+    Opacity: 100,
+    Invert: 0
+  },
+
+  OldSchool: {
+    Brightness: 90,
+    Contrast: 110,
+    Saturation: 60,
+    HueRotation: 0,
+    Blur: 0,
+    Grayscale: 0,
+    Sepia: 60,
+    Opacity: 100,
+    Invert: 0
+  },
+
+  NoirFilm: {
+    Brightness: 80,
+    Contrast: 180,
+    Saturation: 0,
+    HueRotation: 0,
+    Blur: 0,
+    Grayscale: 100,
+    Sepia: 0,
+    Opacity: 100,
+    Invert: 0
+  },
+
+  Sunburn: {
+    Brightness: 140,
+    Contrast: 110,
+    Saturation: 140,
+    HueRotation: -20,
+    Blur: 0,
+    Grayscale: 0,
+    Sepia: 0,
+    Opacity: 100,
+    Invert: 0
+  },
+
+  CoolTone: {
+    Brightness: 105,
+    Contrast: 110,
+    Saturation: 110,
+    HueRotation: -30,
+    Blur: 0,
+    Grayscale: 0,
+    Sepia: 0,
+    Opacity: 100,
+    Invert: 0
+  },
+
+  Retro70s: {
+    Brightness: 100,
+    Contrast: 90,
+    Saturation: 140,
+    HueRotation: -15,
+    Blur: 0,
+    Grayscale: 0,
+    Sepia: 30,
+    Opacity: 100,
+    Invert: 0
+  },
+
+  HighKey: {
+    Brightness: 140,
+    Contrast: 70,
+    Saturation: 110,
+    HueRotation: 0,
+    Blur: 0,
+    Grayscale: 0,
+    Sepia: 0,
+    Opacity: 100,
+    Invert: 0
+  },
+
+  Moody: {
+    Brightness: 70,
+    Contrast: 140,
+    Saturation: 90,
+    HueRotation: 0,
+    Blur: 0,
+    Grayscale: 0,
+    Sepia: 20,
+    Opacity: 100,
+    Invert: 0
+  },
+
+  Vivid: {
+    Brightness: 110,
+    Contrast: 140,
+    Saturation: 150,
+    HueRotation: 0,
+    Blur: 0,
+    Grayscale: 0,
+    Sepia: 0,
+    Opacity: 100,
+    Invert: 0
+  },
+
+  FadedMemory: {
+    Brightness: 120,
+    Contrast: 70,
+    Saturation: 50,
+    HueRotation: 0,
+    Blur: 0,
+    Grayscale: 15,
+    Sepia: 25,
+    Opacity: 90,
+    Invert: 0
+  },
+
+  Polaroid: {
+    Brightness: 115,
+    Contrast: 85,
+    Saturation: 100,
+    HueRotation: 0,
+    Blur: 0,
+    Grayscale: 0,
+    Sepia: 15,
+    Opacity: 100,
+    Invert: 0
+  },
+
+  DarkMystery: {
+    Brightness: 60,
+    Contrast: 160,
+    Saturation: 70,
+    HueRotation: 20,
+    Blur: 0,
+    Grayscale: 0,
+    Sepia: 10,
+    Opacity: 100,
+    Invert: 0
+  }
+};
+
+Object.keys(presets).forEach(presetName => {
+  const presetButton = document.createElement("button")
+  presetButton.classList.add("btn")
+  presetButton.innerText = presetName
+  presetsContainer.appendChild(presetButton)
+
+  presetButton.addEventListener('click', () => {
+
+    const preset = presets[presetName]
+
+    Object.keys(preset).forEach(filterName => {
+      filters[filterName].value = preset[filterName]
+    })
+    
+    applyFilters()
+    filtersContainer.innerHTML = ""
+    createFilterUI()
+
+  })
+
 })
