@@ -5,6 +5,7 @@ let filters = {
     max: 200,
     unit: "%"
   },
+  //testing
 
   Contrast: {
     value: 100,
