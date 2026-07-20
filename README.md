@@ -1,4 +1,4 @@
-# Image Editor
+# Image Editor App
 
 A lightweight browser-based image editor built with HTML, CSS, and vanilla JavaScript. It lets you upload an image, preview it on a canvas, adjust common visual filters, apply one of several presets, reset changes, and download the edited result as a PNG.
 
