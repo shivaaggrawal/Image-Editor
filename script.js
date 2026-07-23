@@ -5,7 +5,7 @@ let filters = {
     max: 200,
     unit: "%"
   },
-
+  
   Contrast: {
     value: 100,
     min: 0,
@@ -13,7 +13,7 @@ let filters = {
     unit: "%"
   },
 
-
+// -- comment
 
   Saturation: {
     value: 100,
